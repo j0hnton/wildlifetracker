@@ -8,18 +8,16 @@
   <th class="font">Age</th>
     <th class="font">Location spotted</th>
 
-    #foreach ($salon1 in $salon1s)
+    #foreach ($track in $tracks)
 
     <tr>
-    <td class="font2">$salon1.getId()</td>
-        <td class="font2" >$salon1.getname()</td>
-        <td class="font2">$salon1.getgender()</td>
-        <td>
-        <form action="/delete-stylist" method="post">
-                        <input id="name" name="id" type="hidden" class="form-control" value="$salon.getId()">
-                          <button type="submit" class="btn btn-basic" id="delete"><h6>Delete stylist</h6></button>
-                        </form>
-        </td>
+    <td class="font2">$track.getid()</td>
+        <td class="font2" >$track.getrangername()</td>
+        <td class="font2">$track.getanimalname()</td>
+           <td class="font2">$track.gethealth()</td>
+              <td class="font2">$track.getage()</td>
+               <td class="font2">$track.getlocation()</td>
+
 
      </tr>
      #end

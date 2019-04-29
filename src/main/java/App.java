@@ -49,14 +49,14 @@ public class App {
         get("/animaldisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("template", "public/template/animaldisplay.vtl");
-            model.put("track", request.session().attribute("track"));
+            model.put("track", animal.all());
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
         get("/endangereddisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
+            model.put("track", sighting.all());
             model.put("template", "public/template/endangereddisplay.vtl");
-            model.put("track", request.session().attribute("track"));
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
@@ -75,6 +75,7 @@ public class App {
             model.put("template", "public/template/animaldisplay.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
         post("/endangereddisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             String rangername = request.queryParams("rname");
