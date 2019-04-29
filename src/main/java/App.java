@@ -39,19 +39,6 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
-        get("/animal", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "public/template/animal.vtl");
-            model.put("tracks", animal.all());
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
-
-        get("/animaldisplay", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("template", "public/template/animaldisplay.vtl");
-            model.put("tracks", request.session().attribute("track"));
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
 
         get("/animaldisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
@@ -68,6 +55,12 @@ public class App {
         }, new VelocityTemplateEngine());
 
 
+        get("/animal", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "public/template/animal.vtl");
+            model.put("tracks", request.session().attribute("track"));
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
 
 
         //post//
@@ -100,8 +93,21 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
-
         post("/success", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            String rangername = request.queryParams("rangername");
+            String animalname = request.queryParams("animalname");
+            String health = request.queryParams("health");
+            String age = request.queryParams("age");
+            String location = request.queryParams("location");
+
+            animal newAnimal = new animal(rangername, animalname, health, age, location);
+            newAnimal.save();
+            model.put("template", "public/template/success.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        post("/esuccess", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             String rangername = request.queryParams("rname");
             String animalname = request.queryParams("aname");
@@ -111,7 +117,7 @@ public class App {
 
             sighting newSighting = new sighting (rangername, animalname, health, age, location);
             newSighting.save();
-            model.put("template", "public/template/success.vtl");
+            model.put("template", "public/template/esuccess.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
