@@ -42,20 +42,20 @@ public class App {
         get("/animal", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("template", "public/template/animal.vtl");
-            model.put("track", request.session().attribute("track"));
+            model.put("tracks", request.session().attribute("track"));
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
         get("/animaldisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("template", "public/template/animaldisplay.vtl");
-            model.put("track", animal.all());
+            model.put("tracks", animal.all());
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
         get("/endangereddisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("track", sighting.all());
+            model.put("tracks", sighting.all());
             model.put("template", "public/template/endangereddisplay.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
