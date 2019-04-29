@@ -69,7 +69,7 @@ Location=location;
 
     public void save() {
         try (Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO client (rangername ,animalname, health, age, location) VALUES (:rangername, :animalname , :health , :age , :location)";
+            String sql = "INSERT INTO sighting (rangername ,animalname, health, age, location) VALUES (:rangername, :animalname , :health , :age , :location)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("rangername", Rangername)
                     .addParameter("animalname", Animalname)

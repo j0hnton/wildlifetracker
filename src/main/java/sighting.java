@@ -1,6 +1,6 @@
 import java.util.List;
 import org.sql2o.*;
-public class endangered {
+public class sighting {
 
     private int id;
     private String Rangername;
@@ -10,7 +10,7 @@ public class endangered {
     private String Location;
 
 
-    public endangered(String rangername, String animalname, String health,String age, String location) {
+    public sighting(String rangername, String animalname, String health,String age, String location) {
 
         Rangername=rangername;
         Animalname=animalname;
@@ -44,32 +44,32 @@ public class endangered {
     }
 
     @Override
-    public boolean equals(Object anotheranimal) {
-        if (!(anotheranimal instanceof animal)) {
+    public boolean equals(Object anothersighting) {
+        if (!(anothersighting instanceof animal)) {
             return false;
         } else {
-            animal newanimal = (animal) anotheranimal;
-            return this.getrangername().equals(newanimal.getrangername()) &&
-                    this.getanimalname() == newanimal.getanimalname() &&
-                    this.gethealth() == newanimal.gethealth()&&
-                    this.getage() == newanimal.getage() &&
-                    this.getlocation() == newanimal.getlocation();
+            sighting newsighting = (sighting) anothersighting;
+            return this.getrangername().equals(newsighting.getrangername()) &&
+                    this.getanimalname() == newsighting.getanimalname() &&
+                    this.gethealth() == newsighting.gethealth()&&
+                    this.getage() == newsighting.getage() &&
+                    this.getlocation() == newsighting.getlocation();
 
 
 
         }
     }
 
-    public static List<animal> all() {
-        String sql = "SELECT * FROM animal";
+    public static List<sighting> all() {
+        String sql = "SELECT * FROM sighting";
         try (Connection con = DB.sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(animal.class);
+            return con.createQuery(sql).executeAndFetch(sighting.class);
         }
     }
 
     public void save() {
         try (Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO client (rangername ,animalname, health, age, location) VALUES (:rangername, :animalname , :health , :age , :location)";
+            String sql = "INSERT INTO sighting (rangername ,animalname, health, age, location) VALUES (:rangername, :animalname , :health , :age , :location)";
             this.id = (int) con.createQuery(sql, true)
                     .addParameter("rangername", Rangername)
                     .addParameter("animalname", Animalname)
