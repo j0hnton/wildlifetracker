@@ -1,8 +1,8 @@
-# HERO SALON
-#### This is an online app for tracking clients and salon stylists.
+# Wildlife Tracker
+#### This is an online app for tracking animals.
 #### By **JOHN KYALO**
 ## Description
-A stylist is added and also their clients are recorded.
+When animals are sited, they are recorded and stored in a database.
 
 ## Known Bugs
 Currently the bug that exists is that the app may not work on all browsers.
