@@ -42,6 +42,13 @@ public class App {
         get("/animal", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("template", "public/template/animal.vtl");
+            model.put("tracks", animal.all());
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        get("/animaldisplay", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "public/template/animaldisplay.vtl");
             model.put("tracks", request.session().attribute("track"));
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
@@ -60,6 +67,9 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
+
+
+
         //post//
 
         post("/animaldisplay", (request, response) -> {
@@ -76,7 +86,7 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
-        post("/endangereddisplay", (request, response) -> {
+             post("/endangereddisplay", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             String rangername = request.queryParams("rname");
             String animalname = request.queryParams("aname");
@@ -89,6 +99,22 @@ public class App {
             model.put("template", "public/template/endangereddisplay.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
+
+        post("/success", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            String rangername = request.queryParams("rname");
+            String animalname = request.queryParams("aname");
+            String health = request.queryParams("ahealth");
+            String age = request.queryParams("aage");
+            String location = request.queryParams("alocation");
+
+            sighting newSighting = new sighting (rangername, animalname, health, age, location);
+            newSighting.save();
+            model.put("template", "public/template/success.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
 
     }
 }
