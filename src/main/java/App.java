@@ -45,5 +45,6 @@ public class App {
             model.put("track", request.session().attribute("track"));
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
+
     }
 }

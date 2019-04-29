@@ -1,3 +1,4 @@
+ <a  href="/index">Done</a>
  <h1>Endangered Species</h1>
     <form action="/endangered" method="post">
  <label for="rname">Ranger Name</label>
@@ -20,7 +21,6 @@
                             <option>Adult<option>
                      </select>
 
-                     //sighting
 
                      <label for="sighting">Location seen</label>
                                   <select id="health" name="health">
@@ -31,34 +31,5 @@
 <br>
         <button  type="submit" class="btn btn-basic"><h6>Submit</h6></button>
 
-//display//
-//display//
 
-<a  href="/index">Done</a>
-<div class="col-md-6">
-<h2><strong>Animals.</strong></h2>
-<table class="table-bordered">
- <th class="font"> Animal ID</th>
- <th class="font"> Ranger Name</th>
- <th class="font">Animal Name</th>
- <th class="font">Health.</th>
-  <th class="font">Age</th>
-    <th class="font">Location spotted</th>
 
-    #foreach ($salon1 in $salon1s)
-
-    <tr>
-    <td class="font2">$salon1.getId()</td>
-        <td class="font2" >$salon1.getname()</td>
-        <td class="font2">$salon1.getgender()</td>
-        <td>
-        <form action="/delete-stylist" method="post">
-                        <input id="name" name="id" type="hidden" class="form-control" value="$salon.getId()">
-                          <button type="submit" class="btn btn-basic" id="delete"><h6>Delete stylist</h6></button>
-                        </form>
-        </td>
-
-     </tr>
-     #end
-  </table>
-</div>
