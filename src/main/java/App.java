@@ -46,5 +46,17 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
+        get("/animaldisplay", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "public/template/animaldisplay.vtl");
+            model.put("track", request.session().attribute("track"));
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+        get("/endangereddisplay", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "public/template/endangereddisplay.vtl");
+            model.put("track", request.session().attribute("track"));
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
     }
 }
